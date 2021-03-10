@@ -37,7 +37,7 @@ public class Maze : Node2D
                 {new Vector2(-1, 0), WallCompass.W}
             };
 
-        Map = GetNode<TileMap>("Map");
+        Map = GetNode<TileMap>("TileMap");
         Rng = new Random();
         // Get cell size from node even after setting it in code:
         TileSize = Map.CellSize;
@@ -104,7 +104,7 @@ public class Maze : Node2D
                         // Remove wall of the target cell facing the current cell:
                         var nextTileValue = Map.GetCellv(next);
                         directionOfWallToBreak = (int) CellWalls[-dir];
-                        GD.Print($"Current tile value {currentTileValue} - {directionOfWallToBreak} =");
+                        GD.Print($"Next tile value {currentTileValue} - {directionOfWallToBreak} =");
                         var nextWalls = Map.GetCellv(next) - (int)CellWalls[-dir];
                         GD.Print($"new next tile {nextWalls}");
                         // Apply calculated values to cells:
