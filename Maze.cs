@@ -82,22 +82,31 @@ public class Maze : Node2D
         while (unvisited.Any())
             {
                 var neighbours = CheckNeighbours(current, unvisited);
-                GD.Print($"current: {current}");
                 GD.Print($"unvisited:");
                 unvisited.ForEach((v=> GD.Print(v)));
-                GD.Print(current);
+                GD.Print($"current: {current}");
                 if (neighbours.Count > 0)
                     {
                         // Pick a random entry from available neighbouring tiles:
                         var next = neighbours[Rng.Next(neighbours.Count)];
                         stack.Push(current);
-                        var dir = next - current ;
+                        GD.Print($"Next cell is {next}");
+                        var dir = next - current;
+                        GD.Print($"Move in direction {dir} from  current pos: {current}");
+                        
                         // Remove the wall from current cell towards direction:
-                        var valCurr = Map.GetCellv(current);
-                        var binWall = (int) CellWalls[dir];
-                        var currentWalls = Map.GetCellv(current) - (int)CellWalls[dir];
+                        var currentTileValue = Map.GetCellv(current);
+                        var directionOfWallToBreak = (int) CellWalls[dir];
+                        GD.Print($"Current tile value {currentTileValue} - {directionOfWallToBreak} =");
+                        var currentWalls = Map.GetCellv(current) - (int) CellWalls[dir];
+                        GD.Print($"new current tile {currentWalls}");
+                        
                         // Remove wall of the target cell facing the current cell:
+                        var nextTileValue = Map.GetCellv(next);
+                        directionOfWallToBreak = (int) CellWalls[-dir];
+                        GD.Print($"Current tile value {currentTileValue} - {directionOfWallToBreak} =");
                         var nextWalls = Map.GetCellv(next) - (int)CellWalls[-dir];
+                        GD.Print($"new next tile {nextWalls}");
                         // Apply calculated values to cells:
                         Map.SetCellv(current, currentWalls);
                         Map.SetCellv(next, nextWalls);
