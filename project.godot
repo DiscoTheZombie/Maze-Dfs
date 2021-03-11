@@ -19,10 +19,6 @@ config/name="Maze Dfs"
 run/main_scene="res://Maze.tscn"
 config/icon="res://icon.png"
 
-[mono]
-
-debugger_agent/wait_for_debugger=true
-
 [rendering]
 
 environment/default_environment="res://default_env.tres"

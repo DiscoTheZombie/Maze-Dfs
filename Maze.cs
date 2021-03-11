@@ -22,8 +22,8 @@ public class Maze : Node2D
     public Vector2 TileSize = new Vector2(64, 64); // Tile size in pixels, has to match editor tiles.
 
     public int
-        Width = 2, // Width of map in tiles.
-        Height = 2;// Height of map in tiles.
+        Width = 5, // Width of map in tiles.
+        Height = 5;// Height of map in tiles.
 
 
     // Called when the node enters the scene tree for the first time.
@@ -37,7 +37,7 @@ public class Maze : Node2D
                 {new Vector2(-1, 0), WallCompass.W}
             };
 
-        Map = GetNode<TileMap>("TileMap");
+        Map = GetNode<TileMap>("TileMap2");
         Rng = new Random();
         // Get cell size from node even after setting it in code:
         TileSize = Map.CellSize;
